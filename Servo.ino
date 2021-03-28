@@ -6,7 +6,8 @@ unsigned long prevtimeL = 0;
 unsigned long prevtimeR = 0;
 int reachL = 30;
 int reachR = 30;
-
+int countL = 0;
+int countR = 0;
 
 int pos1;
 int pos2;
@@ -28,53 +29,6 @@ Servo R4;
 Servo R5;
 
 
-/*
-void hello()
-{
-  C3.write(30);
-  B3.write(30);
-
-  pos1 = 30;
-  prevtime = millis();
-  
-  if( pos1 < 91)
-  {
-    timer = millis();
-    if ((timer - prevtime) > 60)
-    {
-      C3.write(pos1);
-      B3.write(pos1);
-      pos1++;
-      prevtime = millis();
-    }
-  }
-  
-}
-
-void world()
-{
-  pos2 = 0;
-  prevtime = millis();
-  if (pos2 < 31)
-  {
-    timer = millis();
-    
-    if ((timer - prevtime)> 50)
-    {
-      C5.write((90 + pos2)*0.95);
-      leftarm.write(97-pos2);
-      C4.write((90 - 2* pos2) *1.1);
-      pos2++;
-      prevtime = millis();
-      
-    }
-  }
-
-  
-}
-
-
-*/
 void pinout()
 {
   pinMode(2, OUTPUT);
@@ -200,9 +154,83 @@ void Rretract()
 }
 
 
+void Lgrab()
+{
+  L1.write(85);
+  
+}
 
+void Rgrab()
+{
+  R1.write(85);
+  
+}
 
+void Lrelease()
+{
+  L1.write(100);
+  
+}
 
+void Rrelease()
+{
+  R1.write(100);
+  
+}
+
+void Lshake()
+{
+ //保留设置摇晃次数的选项，默认摇晃四次
+  L2.write(70);
+  L3.write(70);
+  L2.write(110);
+  L3.write(110);
+    L2.write(70);
+  L3.write(70);
+  L2.write(110);
+  L3.write(110);
+    L2.write(70);
+  L3.write(70);
+  L2.write(110);
+  L3.write(110);
+    L2.write(70);
+  L3.write(70);
+  L2.write(110);
+  L3.write(110);
+
+    //归位
+  L2.write(90);
+  L3.write(97);
+  
+  
+}
+
+void Rshake()
+{
+ //保留设置摇晃次数的选项，默认摇晃四次
+  R2.write(70);
+  R3.write(70);
+  R2.write(110);
+  R3.write(110);
+    R2.write(70);
+  R3.write(70);
+  R2.write(110);
+  R3.write(110);
+    R2.write(70);
+  R3.write(70);
+  R2.write(110);
+  R3.write(110);
+    R2.write(70);
+  R3.write(70);
+  R2.write(110);
+  R3.write(110);
+
+    //归位
+  R2.write(90);
+  R3.write(90);
+  
+  
+}
 
 void setup() {
   // put your setup code here, to run once:
